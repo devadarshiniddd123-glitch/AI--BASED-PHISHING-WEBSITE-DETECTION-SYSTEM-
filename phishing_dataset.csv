@@ -1,0 +1,9 @@
+url,label
+https://www.google.com,legitimate
+https://www.wikipedia.org,legitimate
+https://www.amazon.com,legitimate
+https://www.microsoft.com,legitimate
+http://login-verify-account.com,phishing
+http://secure-bank-login.com,phishing
+http://account-update-login.com,phishing
+http://verify-your-account.com,phishing
