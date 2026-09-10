@@ -1,5 +1,6 @@
 from urllib.parse import urlparse
-
+import joblib
+import pandas as pd
 def extract_features(url):
     parsed = urlparse(url)
 
