@@ -1,64 +1,29 @@
-from urllib.parse import urlparse
+import streamlit as st
 import joblib
-import pandas as pd
+
+# Load trained model and vectorizer
 model = joblib.load("phishing_model.pkl")
 vectorizer = joblib.load("url_vectorizer.pkl")
-def predict_url(url):
-    features = vectorizer.transform([url])
-    prediction = model.predict(features)[0]
-    return prediction
-def extract_features(url):
-    parsed = urlparse(url)
 
-    features = {
-        "url_length": len(url),
-        "has_ip": any(char.isdigit() for char in parsed.netloc),
-        "has_at_symbol": "@" in url,
-        "has_https": parsed.scheme == "https",
-        "has_hyphen": "-" in parsed.netloc,
-        "has_suspicious_words": any(
-            word in url.lower()
-            for word in ["login", "verify", "account", "secure", "update", "bank"]
-        )
-    }
+# Page title
+st.title("🛡️ AI-Based Phishing Website Detection System")
 
-    return features
+st.write("Enter a website URL to check whether it is legitimate or potentially phishing.")
 
+# URL input
+url = st.text_input("Enter Website URL:")
 
-def detect_phishing(url):
-    features = extract_features(url)
+# Check button
+if st.button("Check Website"):
+    if url:
+        features = vectorizer.transform([url])
+        prediction = model.predict(features)[0]
 
-    risk_score = 0
-
-    if features["url_length"] > 75:
-        risk_score += 1
-
-    if features["has_ip"]:
-        risk_score += 1
-
-    if features["has_at_symbol"]:
-        risk_score += 2
-
-    if not features["has_https"]:
-        risk_score += 1
-
-    if features["has_hyphen"]:
-        risk_score += 1
-
-    if features["has_suspicious_words"]:
-        risk_score += 1
-
-    if risk_score >= 3:
-        return "Potentially Phishing", risk_score
-
-    return "Likely Legitimate", risk_score
-
-
-print("AI-Based Phishing Website Detection System")
-print("--------------------------------------------")
-
-url = input("Enter website URL: ")
-prediction = predict_url(url)
-
-print("\nDetection Result:", prediction)
-
+        if prediction == "phishing":
+            st.error("⚠️ Potentially Phishing Website")
+            st.write("This website may be unsafe. Please avoid entering personal or banking information.")
+        else:
+            st.success("✅ Likely Legitimate Website")
+            st.write("No phishing indication was detected by the current model.")
+    else:
+        st.warning("Please enter a website URL.")
