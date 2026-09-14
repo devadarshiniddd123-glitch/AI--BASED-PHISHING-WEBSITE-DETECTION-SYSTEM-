@@ -3,6 +3,10 @@ import joblib
 import pandas as pd
 model = joblib.load("phishing_model.pkl")
 vectorizer = joblib.load("url_vectorizer.pkl")
+def predict_url(url):
+    features = vectorizer.transform([url])
+    prediction = model.predict(features)[0]
+    return prediction
 def extract_features(url):
     parsed = urlparse(url)
 
@@ -54,8 +58,7 @@ print("AI-Based Phishing Website Detection System")
 print("--------------------------------------------")
 
 url = input("Enter website URL: ")
+prediction = predict_url(url)
 
-result, score = detect_phishing(url)
+print("\nDetection Result:", prediction)
 
-print("\nDetection Result:", result)
-print("Risk Score:", score)
