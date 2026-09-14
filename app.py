@@ -1,6 +1,8 @@
 from urllib.parse import urlparse
 import joblib
 import pandas as pd
+model = joblib.load("phishing_model.pkl")
+vectorizer = joblib.load("url_vectorizer.pkl")
 def extract_features(url):
     parsed = urlparse(url)
 
