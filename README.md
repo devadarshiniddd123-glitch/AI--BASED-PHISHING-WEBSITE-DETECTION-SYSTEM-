@@ -2,65 +2,116 @@
 
 ## Project Overview
 
-The AI-Based Phishing Website Detection System is a software project designed to identify suspicious and potentially phishing websites using Artificial Intelligence and Machine Learning techniques.
+The AI-Based Phishing Website Detection System is a web-based application designed to identify potentially phishing websites using Artificial Intelligence and Machine Learning techniques.
 
-The system analyzes website URL characteristics and uses a machine learning model to classify a website as either legitimate or potentially phishing.
+The system accepts a website URL, validates the input, and uses a trained machine learning model to classify the URL as potentially phishing or likely legitimate. The application displays the detection result through a simple and user-friendly interface built using Streamlit.
 
-## Objectives
+## Project Objectives
 
-- Detect potentially phishing websites.
-- Analyze suspicious URL characteristics.
-- Apply AI/ML techniques for website classification.
-- Provide a simple and understandable detection result.
-- Improve user awareness and protection against phishing attacks.
+- Detect potentially phishing website URLs.
+- Analyze URL text using machine learning techniques.
+- Classify URLs as potentially phishing or likely legitimate.
+- Validate user input before processing.
+- Display clear and understandable detection results.
+- Provide an accessible web application for phishing awareness.
 
-## Current Progress
+## Project Progress
 
-The project is currently in the initial development stage.
+**Review 2 Progress: Approximately 70%**
 
-### Completed So Far
+The project has progressed from initial planning to a working web application. The main interface has been implemented, the trained model has been integrated, and initial functional testing has been completed.
 
-- Project problem and objective have been defined.
-- Basic system workflow has been planned.
-- Important URL-based phishing features have been identified.
-- AI/ML-based detection approach has been selected.
-- Initial system architecture has been designed.
+### Completed Work
 
-### Currently Working On
+- Defined the project problem and objectives.
+- Designed the system workflow and architecture.
+- Prepared the initial URL-based detection approach.
+- Implemented the Streamlit web application.
+- Integrated the machine learning model and URL vectorizer.
+- Added website URL input functionality.
+- Implemented URL input validation.
+- Added phishing detection result display.
+- Added model phishing score display when supported.
+- Deployed the application using Streamlit Community Cloud.
+- Performed initial functional tests for legitimate, empty, invalid, and suspicious-looking URLs.
+- Updated project documentation on GitHub.
 
-- Dataset preparation.
-- URL feature extraction.
-- Machine learning model development.
-- Application implementation.
+## System Workflow
 
-### Pending Work
+1. User enters a website URL.
+2. The application validates the URL.
+3. The URL is transformed into machine learning features using the trained vectorizer.
+4. The machine learning model predicts the URL class.
+5. The application displays the prediction result.
+6. If supported by the model, the phishing probability score is displayed.
 
-- Complete model training and testing.
-- Evaluate detection accuracy.
-- Integrate the trained model with the application.
-- Develop the final user interface.
-- Perform testing with different website URLs.
-- Complete project documentation.
+**Workflow:**
 
-## Proposed Workflow
+User Input → URL Validation → Feature Vectorization → ML Model Prediction → Result Display
 
-User enters URL  
-→ URL Validation  
-→ Feature Extraction  
-→ AI/ML Model  
-→ Phishing Detection  
-→ Result Display
+## Technologies Used
 
-## Technologies
+- **Programming Language:** Python
+- **Machine Learning:** Scikit-learn
+- **Feature Extraction:** TF-IDF Vectorization
+- **Classification Algorithm:** Random Forest Classifier
+- **Web Framework:** Streamlit
+- **Model Serialization:** Joblib
+- **Version Control:** GitHub
+- **Deployment Platform:** Streamlit Community Cloud
 
-- Python
-- Machine Learning
-- Data Processing
-- Web Technologies
-- GitHub
+## Application Features
+
+- Simple and user-friendly interface.
+- Website URL input field.
+- URL format validation.
+- Machine learning-based URL classification.
+- Phishing and legitimate result messages.
+- Model phishing score display when supported.
+- Error handling for unsuccessful scans.
+- Online application access through Streamlit Community Cloud.
+
+## Functional Testing
+
+| Test Case | Input | Observed Result |
+|---|---|---|
+| Legitimate URL | https://www.google.com | Expected legitimate result received |
+| Empty URL | Empty input | Validation warning displayed |
+| Invalid URL | abc | Invalid URL message displayed |
+| Suspicious-looking URL | http://example.com/login/verify-account | Potentially Phishing Website displayed |
+
+These tests verify basic application functionality. They do not independently establish the model's overall accuracy or its ability to detect all phishing websites.
+
+## Current Limitations
+
+- Predictions depend on the quality and coverage of the training dataset.
+- URL text analysis alone cannot guarantee website safety.
+- The displayed phishing score, when available, is a model estimate and not a guarantee.
+- Comprehensive evaluation using a separate test dataset is still required.
+- Further testing is needed with a wider range of phishing and legitimate URLs.
+
+## Remaining Work
+
+- Evaluate the model using a separate test dataset.
+- Calculate accuracy, precision, recall, and F1-score.
+- Review false-positive and false-negative predictions.
+- Improve dataset quality and model performance where necessary.
+- Perform additional functional and edge-case testing.
+- Capture application screenshots and document results.
+- Finalize the project report and presentation.
+
+## Future Enhancements
+
+- Expand the dataset with diverse phishing and legitimate URLs.
+- Improve feature extraction and model evaluation.
+- Add detailed scan reports.
+- Improve the user interface and result explanations.
+- Explore additional URL and domain-related security features.
 
 ## Project Status
 
-**Review 1 Progress: Approximately 35%**
+**Current Progress: Approximately 70% — Review 2**
 
-The core project concept, workflow, detection approach, and initial system design have been completed. The implementation, model training, testing, and final integration are currently in progress.
+The application interface, model integration, URL validation, initial detection testing, and online deployment have been completed. Model evaluation, broader testing, performance improvement, and final documentation remain ongoing tasks.
+
+**Disclaimer:** This application provides an initial machine learning-based URL assessment. A result classified as legitimate does not guarantee that a website is safe. Users should avoid entering sensitive information on websites they do not trust.
